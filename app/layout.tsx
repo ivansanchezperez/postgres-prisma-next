@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 
+import { Providers } from "./providers";
+
 export const metadata = {
   title: "Vercel Postgres Demo with Prisma",
   description:
@@ -19,14 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
       </head>
-      <body className={inter.variable}>{children}</body>
+      <body className={inter.variable}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

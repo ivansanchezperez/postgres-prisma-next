@@ -2,14 +2,23 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // Changed "next/navigation" to "next/router"
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+
+import { Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 
 const Home = () => {
   const [showInputs, setShowInputs] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+
   const router = useRouter();
 
   const showDiv = () => {
     setShowInputs(true);
+  };
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -28,15 +37,24 @@ const Home = () => {
         </div>
       ) : (
         <div className="h-[50vh] w-full flex justify-center items-end animate__animated animate__fadeInUp min-h-[300px]">
-          <div className="bg-blue-500 border-t rounded-t-lg text-white p-4 w-full h-[80%] animate__animated animate__fadeInUp flex justify-center items-center flex-col gap-4">
-            <input
-              type="text"
-              className="w-[247px] bg-white text-black h-10 border rounded"
+          <div className="bg-[#1c1c1c] border-t rounded-t-lg text-white p-4 w-full h-[80%] animate__animated animate__fadeInUp flex justify-center items-center flex-col gap-4">
+            <Input
+              type="email"
+              variant={"faded"}
+              label="Email"
+              name="email"
+              value={form.email}
+              onChange={handleInput}
             />
-            <input
+            <Input
               type="password"
-              className="w-[247px] bg-white text-black h-10 border rounded"
+              variant={"faded"}
+              label="Password"
+              name="password"
+              value={form.password}
+              onChange={handleInput}
             />
+            <Button fullWidth>Entrar</Button>
           </div>
         </div>
       )}
