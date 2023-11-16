@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Changed "next/navigation" to "next/router"
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
+import useUser from "@/hooks/login";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
+import { useUserContext } from "@/context/UserContext/UserContext";
 
 const Home = () => {
+  const { fetchUser } = useUser();
+  const { user } = useUserContext();
   const [showInputs, setShowInputs] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
 
@@ -19,6 +23,14 @@ const Home = () => {
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
+  };
+
+  const login = async () => {
+    await fetchUser(form.email, form.password);
+
+    if (user) {
+      router.push("/dashboard");
+    }
   };
 
   return (
@@ -54,7 +66,9 @@ const Home = () => {
               value={form.password}
               onChange={handleInput}
             />
-            <Button fullWidth>Entrar</Button>
+            <Button fullWidth onClick={() => login()}>
+              Entrar
+            </Button>
           </div>
         </div>
       )}
