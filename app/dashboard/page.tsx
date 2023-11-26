@@ -29,7 +29,6 @@ const Dashboard = () => {
             className="px-5 font-bold text-savingPink text-2xl"
             style={{ textShadow: "black 0.5px 0.5px 0.5px" }}
           >
-            Ivan
             {user?.name}
           </section>
           <section
