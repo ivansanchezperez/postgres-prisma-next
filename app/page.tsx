@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
 import useUser from "@/hooks/login";
-import { Divider, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { useUserContext } from "@/context/UserContext/UserContext";
 

@@ -31,7 +31,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${sanchez.variable} font-sanchez`}
-        style={{ margin: 0, minHeight: "100vh" }}
+        style={{ margin: 0, minHeight: "100%" }}
       >
         <Providers>{children}</Providers>
       </body>
