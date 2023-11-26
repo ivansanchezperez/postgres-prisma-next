@@ -17,6 +17,7 @@ const useUser = () => {
 
       if (user && user.password === password) {
         setUser(user);
+
         return user;
       }
     } catch (error) {

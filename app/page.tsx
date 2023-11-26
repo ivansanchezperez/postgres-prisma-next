@@ -12,8 +12,8 @@ import { useUserContext } from "@/context/UserContext/UserContext";
 const Home = () => {
   const { fetchUser } = useUser();
   const { user } = useUserContext();
-  const [showInputs, setShowInputs] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -23,16 +23,17 @@ const Home = () => {
     }
   }, [user]);
 
-  const showDiv = () => {
-    setShowInputs(true);
-  };
-
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
   };
 
   const login = async () => {
-    await fetchUser(form.email, form.password);
+    setIsLoading(true);
+    const _user = await fetchUser(form.email, form.password);
+
+    if (_user) {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -68,6 +69,7 @@ const Home = () => {
           fullWidth
           onClick={() => login()}
           className="mt-5 bg-savingPink text-[white] font-bold text-base tracking-wider shadow-md"
+          isLoading={isLoading}
         >
           Entrar
         </Button>
