@@ -8,7 +8,19 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html {
+  color: rgb(var(--foreground-rgb));
+  background: #d6d9e1;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(#62b3fd, #a3d2fe95, #ffffff00, #ffffff00);
+  background: #d6d9e1;
 }
+
+/* RGB(225, 214, 211) - Hex: #e1d6d3
+RGB(224, 214, 211) - Hex: #e0d6d3
+RGB(227, 216, 213) - Hex: #e3d8d5
+RGB(186, 184, 180) - Hex: #bab8b4
+RGB(223, 213, 209) - Hex: #dfd5d1 */
+/* #808185 */

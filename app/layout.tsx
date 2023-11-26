@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Sanchez } from "next/font/google";
 
 import { Providers } from "./providers";
 
@@ -9,10 +9,11 @@ export const metadata = {
     "A simple Next.js app with Vercel Postgres as the database and Prisma as the ORM",
 };
 
-const inter = Inter({
-  variable: "--font-inter",
+const sanchez = Sanchez({
+  variable: "--font-sanchez",
   subsets: ["latin"],
   display: "swap",
+  weight: "400",
 });
 
 export default function RootLayout({
@@ -21,14 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="es" style={{ background: "#d6d9e1" }}>
       <head>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
       </head>
-      <body className={inter.variable}>
+      <body
+        className={`${sanchez.variable} font-sanchez`}
+        style={{ margin: 0, minHeight: "100vh" }}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

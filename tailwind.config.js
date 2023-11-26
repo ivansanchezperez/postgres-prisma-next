@@ -11,7 +11,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        default: ["var(--font-inter)"],
+        default: ["var(--font-sanchez)"],
+        sanchez: ["var(--font-sanchez)"],
+      },
+      colors: {
+        savingPink: "#efaab6",
       },
     },
   },

@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import useUser from "@/hooks/login";
-import { Input } from "@nextui-org/react";
+import { Divider, Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { useUserContext } from "@/context/UserContext/UserContext";
 
@@ -17,6 +17,12 @@ const Home = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user]);
+
   const showDiv = () => {
     setShowInputs(true);
   };
@@ -27,51 +33,45 @@ const Home = () => {
 
   const login = async () => {
     await fetchUser(form.email, form.password);
-
-    if (user) {
-      router.push("/dashboard");
-    }
   };
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <div className="flex-1 w-full flex justify-center items-end">
-        <Image src="/login.png" alt="login" width="247" height="187" />
+    <main className="relative flex flex-col items-center justify-center px-10 py-10">
+      <div className="w-full flex justify-center">
+        <Image src="/piggy.png" alt="login" width="130" height="130" />
       </div>
-      {!showInputs ? (
-        <div className="h-[50vh] w-full flex justify-center items-center py-10 px-9 min-h-[300px]">
-          <button
-            onClick={() => showDiv()}
-            className="w-[247px] bg-black text-white h-10 border rounded"
-          >
-            ¡Hola! 👋🏻
-          </button>
+      <section className="mt-5 text-4xl font-bold">Login</section>
+      <section className="flex flex-row w-full mt-5 items-center">
+        <div className="w-5 h-5 bg-savingPink rounded-full flex items-center justify-center">
+          <div className="w-2 h-2 bg-[black] rounded-full ml-[1px]"></div>
         </div>
-      ) : (
-        <div className="h-[50vh] w-full flex justify-center items-end animate__animated animate__fadeInUp min-h-[300px]">
-          <div className="bg-[#1c1c1c] border-t rounded-t-lg text-white p-4 w-full h-[80%] animate__animated animate__fadeInUp flex justify-center items-center flex-col gap-4">
-            <Input
-              type="email"
-              variant={"faded"}
-              label="Email"
-              name="email"
-              value={form.email}
-              onChange={handleInput}
-            />
-            <Input
-              type="password"
-              variant={"faded"}
-              label="Password"
-              name="password"
-              value={form.password}
-              onChange={handleInput}
-            />
-            <Button fullWidth onClick={() => login()}>
-              Entrar
-            </Button>
-          </div>
-        </div>
-      )}
+        <div className="w-full h-[1px] bg-[gray]"></div>
+      </section>
+      <section className="flex flex-col mt-5 w-full gap-3">
+        <Input
+          type="email"
+          variant={"faded"}
+          label="Email"
+          name="email"
+          value={form.email}
+          onChange={handleInput}
+        />
+        <Input
+          type="password"
+          variant={"faded"}
+          label="Contraseña"
+          name="password"
+          value={form.password}
+          onChange={handleInput}
+        />
+        <Button
+          fullWidth
+          onClick={() => login()}
+          className="mt-5 bg-savingPink text-[white] font-bold text-base tracking-wider shadow-md"
+        >
+          Entrar
+        </Button>
+      </section>
     </main>
   );
 };
