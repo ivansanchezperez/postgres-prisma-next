@@ -35,7 +35,7 @@ const Dashboard = () => {
             className="px-5 font-bold text-white text-lg tracking-widest"
             style={{ textShadow: "pink 0.5px 0.5px 0.5px" }}
           >
-            1500 €
+            {`${user?.baseSalary} €`}
           </section>
         </section>
       </section>
