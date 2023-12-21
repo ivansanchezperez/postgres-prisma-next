@@ -17,5 +17,6 @@ model users {
   email     String   @unique
   image     String
   password  String?
+  baseSalary Int?
   createdAt DateTime @default(now())
 }

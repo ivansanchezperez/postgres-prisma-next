@@ -11,6 +11,7 @@ async function main() {
         password: "070705",
         image:
           "https://pbs.twimg.com/profile_images/1576257734810312704/ucxb4lHy_400x400.jpg",
+        baseSalary: 2900,
       },
     }),
     prisma.users.upsert({
@@ -22,6 +23,7 @@ async function main() {
         password: "031500",
         image:
           "https://pbs.twimg.com/profile_images/1587647097670467584/adWRdqQ6_400x400.jpg",
+        baseSalary: 1500,
       },
     }),
   ]);
